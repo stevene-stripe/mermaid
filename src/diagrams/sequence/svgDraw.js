@@ -1,4 +1,7 @@
-export const drawRect = function (elem, rectData) {
+import { generateId } from '../../utils'
+
+export const drawRect = function (elem, rectData, drawShadow) {
+  
   const rectElem = elem.append('rect')
   rectElem.attr('x', rectData.x)
   rectElem.attr('y', rectData.y)
@@ -9,6 +12,33 @@ export const drawRect = function (elem, rectData) {
   rectElem.attr('rx', rectData.rx)
   rectElem.attr('ry', rectData.ry)
 
+  if (drawShadow) {
+    const defsElm = elem.append('defs')
+    const filterElm = defsElm.append('filter')
+    const filterId = generateId('mermaid-rect-')
+    filterElm.attr('id', filterId)
+    filterElm.attr('x', '-70%')
+    filterElm.attr('y', '-4%')
+    filterElm.attr('width', '200%')
+    filterElm.attr('height', '200%')
+    filterElm.attr('filterUnits', 'objectBoundingBox')
+
+    const feOffsetElm = filterElm.append('feOffset')
+    feOffsetElm.attr('result', 'offsetblur')
+    feOffsetElm.attr('dx', '2')
+    feOffsetElm.attr('dy', '1')
+
+    const feGaussianBlurElm = filterElm.append('feGaussianBlur')
+    feGaussianBlurElm.attr('in', 'SourceAlpha')
+    feGaussianBlurElm.attr('stdDeviation', '2')
+
+    const feMergeElm = filterElm.append('feMerge')
+    const feMergeNodeElm = feMergeElm.append('feMergeNode')
+    const feMergeNodeElm2 = feMergeElm.append('feMergeNode')
+    feMergeNodeElm2.attr('in', 'SourceGraphic')
+    rectElem.attr('filter', `url(#${filterId})`)
+  }
+  
   if (typeof rectData.class !== 'undefined') {
     rectElem.attr('class', rectData.class)
   }
@@ -84,9 +114,9 @@ export const drawActor = function (elem, left, verticalPos, description, conf) {
   rect.width = conf.width
   rect.height = conf.height
   rect.class = 'actor'
-  rect.rx = 3
-  rect.ry = 3
-  drawRect(g, rect)
+  rect.rx = Number.isInteger(conf.rX) ? conf.rX : 3
+  rect.ry = Number.isInteger(conf.rY) ? conf.rY : 3
+  drawRect(g, rect, true)
 
   _drawTextCandidateFunc(conf)(description, g,
     rect.x, rect.y, rect.width, rect.height, { 'class': 'actor' })
@@ -109,7 +139,7 @@ export const drawActivation = function (elem, bounds, verticalPos) {
   rect.fill = '#f4f4f4'
   rect.width = bounds.stopx - bounds.startx
   rect.height = verticalPos - bounds.starty
-  drawRect(g, rect)
+  drawRect(g, rect, true)
 }
 
 /**

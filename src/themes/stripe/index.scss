@@ -1,8 +1,8 @@
-$mainBkg: #cde498;
+$mainBkg: rgb(246, 249, 252);
 $secondBkg: #cdffb2;
 $lineColor: #1a3318;
 $lineColor: green;
-$border1: #13540c;
+$border1: transparent;
 $border2: #6eaa49;
 $arrowheadColor: green;
 
@@ -20,15 +20,16 @@ $edgeLabelBackground: #e8e8e8;
 
 $actorBorder: $border1;
 $actorBkg: $mainBkg;
-$actorTextColor: black;
+$actorTextColor: #6B7C93;
 $actorLineColor: grey;
-$signalColor: #333;
-$signalTextColor: #333;
+$signalColor: #6B7C93;
+$signalTextColor: #6772E5;
 $labelBoxBkgColor: $actorBkg;
-$labelBoxBorderColor: transparent;
+$labelBoxBorderColor: #6B7C93;
 $labelTextColor: $actorTextColor;
 $noteBorderColor: transparent;
 $noteBkgColor: #ECFAFF;
+$noteTextFontFamily: 'CamphorPro-Bold, Camphor Pro', verdana, arial;
 
 /* Gantt chart variables */
 
@@ -50,4 +51,10 @@ $critBorderColor: #ff8888;
 $critBkgColor: red;
 $todayLineColor: red;
 
+text {
+    font-family: CamphorPro-Light, Camphor Pro;
+}
+text.actor {
+    font-weight: bold;
+}
 @import '../mermaid';

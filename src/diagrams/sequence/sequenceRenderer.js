@@ -174,18 +174,20 @@ const _drawLongText = (text, x, y, g, width) => {
 /**
  * Draws an actor in the diagram with the attaced line
  * @param center - The center of the the actor
- * @param pos The position if the actor in the liost of actors
+ * @param pos The position if the actor in the list of actors
  * @param description The text in the box
  */
 const drawNote = function (elem, startx, verticalPos, msg, forceWidth) {
   const rect = svgDraw.getNoteRect()
   rect.x = startx
   rect.y = verticalPos
+  rect.rx = Number.isInteger(conf.rX) ? conf.rX : rect.rX
+  rect.ry = Number.isInteger(conf.rY) ? conf.rY : rect.rY
   rect.width = forceWidth || conf.width
   rect.class = 'note'
 
   let g = elem.append('g')
-  const rectElem = svgDraw.drawRect(g, rect)
+  const rectElem = svgDraw.drawRect(g, rect, true)
 
   const textHeight = _drawLongText(msg.message, startx - 4, verticalPos + 24, g, rect.width - conf.noteMargin)
 
