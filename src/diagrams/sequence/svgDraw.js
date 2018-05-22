@@ -1,7 +1,6 @@
 import { generateId } from '../../utils'
 
 export const drawRect = function (elem, rectData, drawShadow) {
-  
   const rectElem = elem.append('rect')
   rectElem.attr('x', rectData.x)
   rectElem.attr('y', rectData.y)
@@ -33,12 +32,12 @@ export const drawRect = function (elem, rectData, drawShadow) {
     feGaussianBlurElm.attr('stdDeviation', '2')
 
     const feMergeElm = filterElm.append('feMerge')
-    const feMergeNodeElm = feMergeElm.append('feMergeNode')
+    feMergeElm.append('feMergeNode')
     const feMergeNodeElm2 = feMergeElm.append('feMergeNode')
     feMergeNodeElm2.attr('in', 'SourceGraphic')
     rectElem.attr('filter', `url(#${filterId})`)
   }
-  
+
   if (typeof rectData.class !== 'undefined') {
     rectElem.attr('class', rectData.class)
   }
