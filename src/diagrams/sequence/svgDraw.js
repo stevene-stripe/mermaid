@@ -256,7 +256,6 @@ export const getTextObj = function () {
   const txt = {
     x: 0,
     y: 0,
-    'fill': 'black',
     'text-anchor': 'start',
     style: '#666',
     width: 100,

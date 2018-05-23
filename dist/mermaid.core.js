@@ -8466,7 +8466,6 @@ var getTextObj = exports.getTextObj = function getTextObj() {
   var txt = {
     x: 0,
     y: 0,
-    'fill': 'black',
     'text-anchor': 'start',
     style: '#666',
     width: 100,
