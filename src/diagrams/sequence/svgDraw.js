@@ -126,7 +126,7 @@ export const drawActor = function (elem, left, verticalPos, description, conf) {
   rect.class = 'actor'
   rect.rx = Number.isInteger(conf.borderRadius) ? conf.borderRadius : 3
   rect.ry = Number.isInteger(conf.borderRadius) ? conf.borderRadius : 3
-  drawRect(g, rect, config.dropShadow)
+  drawRect(g, rect, conf.dropShadow)
 
   _drawTextCandidateFunc(conf)(description, g,
     rect.x, rect.y, rect.width, rect.height, { 'class': 'actor' })
@@ -141,7 +141,7 @@ export const anchorElement = function (elem) {
  * @param bounds - activation box bounds
  * @param verticalPos - precise y cooridnate of bottom activation box edge
  */
-export const drawActivation = function (elem, bounds, verticalPos) {
+export const drawActivation = function (elem, bounds, verticalPos, options) {
   const rect = getNoteRect()
   const g = bounds.anchored
   rect.x = bounds.startx
@@ -149,7 +149,7 @@ export const drawActivation = function (elem, bounds, verticalPos) {
   rect.fill = '#f4f4f4'
   rect.width = bounds.stopx - bounds.startx
   rect.height = verticalPos - bounds.starty
-  drawRect(g, rect, config.dropShadow)
+  drawRect(g, rect, options)
 }
 
 /**
