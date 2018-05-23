@@ -70651,8 +70651,8 @@ var drawRect = exports.drawRect = function drawRect(elem, rectData) {
   rectElem.attr('rx', rectData.rx);
   rectElem.attr('ry', rectData.ry);
 
-  if (options.dropShadow) {
-    if (_typeof(options.dropShadow) !== 'object') {
+  if (options) {
+    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
       options.dropShadow = {};
     }
     var dropShadowOptions = Object.assign({
@@ -70664,7 +70664,7 @@ var drawRect = exports.drawRect = function drawRect(elem, rectData) {
       height: '200%',
       stdDeviation: '2',
       filterUnits: 'objectBoundingBox'
-    }, options.dropShadow);
+    }, options);
     var defsElm = elem.append('defs');
     var filterElm = defsElm.append('filter');
     var filterId = (0, _utils.generateId)('mermaid-rect-');

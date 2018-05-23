@@ -11,8 +11,8 @@ export const drawRect = function (elem, rectData, options = {}) {
   rectElem.attr('rx', rectData.rx)
   rectElem.attr('ry', rectData.ry)
 
-  if (options.dropShadow) {
-    if (typeof options.dropShadow !== 'object') {
+  if (options) {
+    if (typeof options !== 'object') {
       options.dropShadow = {}
     }
     const dropShadowOptions = Object.assign({
@@ -24,7 +24,7 @@ export const drawRect = function (elem, rectData, options = {}) {
       height: '200%',
       stdDeviation: '2',
       filterUnits: 'objectBoundingBox'
-    }, options.dropShadow)
+    }, options)
     const defsElm = elem.append('defs')
     const filterElm = defsElm.append('filter')
     const filterId = generateId('mermaid-rect-')
