@@ -8265,7 +8265,7 @@ var drawRect = exports.drawRect = function drawRect(elem, rectData) {
 
   if (options) {
     if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) !== 'object') {
-      options.dropShadow = {};
+      options = {};
     }
     var dropShadowOptions = Object.assign({
       x: '-70%',

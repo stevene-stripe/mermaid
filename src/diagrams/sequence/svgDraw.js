@@ -13,7 +13,7 @@ export const drawRect = function (elem, rectData, options = {}) {
 
   if (options) {
     if (typeof options !== 'object') {
-      options.dropShadow = {}
+      options = {}
     }
     const dropShadowOptions = Object.assign({
       x: '-70%',
